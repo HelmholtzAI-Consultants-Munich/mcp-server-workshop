@@ -1,8 +1,23 @@
 # Integration experiments — Track C
 
-**You do not need IDE or MCP setup knowledge.**
+**You do not need IDE or MCP setup knowledge.**  
+Track C is about **finding where the system breaks**, not building a large feature. Follow the phases below (~60 min hands-on).
 
-## Run (terminal only)
+---
+
+## How this relates to the project
+
+| Layer | What Track C tests |
+|-------|-------------------|
+| `mcp_servers/pdf_server.py` | Do `list_pdfs` and `search_pdf_text` return useful results? |
+| `agent/mcp_client.py` | Can tools be called reliably from Python? |
+| `run_bot.py` / full bot | (Phase 3) Does the end-to-end path behave differently from calling tools directly? |
+
+Track A **builds** features. Track B **plans** architecture elsewhere. Track C **stress-tests** what already exists.
+
+---
+
+## Phase 1 — Baseline run (~15 min)
 
 ```bash
 conda activate hackathon-haicon
@@ -10,7 +25,20 @@ cd agentic-workshop-hackathon
 python scripts/integration_demo.py
 ```
 
-Add two questions of your own (change the script or run manually):
+For each bundled query, note **PASS/FAIL** in your deliverable (bottom of this file). Paste the terminal output there.
+
+Bundled queries:
+
+1. What methods are used?
+2. What accuracy was reported?
+3. What optimization hyperparameters are mentioned?
+4. What failure cases are described?
+
+---
+
+## Phase 2 — Your own queries (~15 min)
+
+Add **at least 3 questions** — ideally one per group member’s domain. Try them against sample PDFs or PDFs you brought.
 
 ```bash
 python -c "
@@ -26,23 +54,51 @@ asyncio.run(main())
 "
 ```
 
-## Test queries (used by integration_demo.py)
-
-1. What methods are used?
-2. What accuracy was reported?
-3. What optimization hyperparameters are mentioned?
-4. What failure cases are described?
+Also try **`extract_pdf_text`** (full pages vs keyword search). Log which tool worked better per query.
 
 ---
 
-## Optional stretch
+## Phase 3 — Compare integration paths (~15 min)
+
+Run the same question through **two paths** and compare:
+
+| Path | Command |
+|------|---------|
+| Tools only | `integration_demo.py` or one-liner above |
+| Full bot (dry) | `python run_bot.py --dry-run` |
+| Full bot (optional) | `python run_bot.py "your question"` if you have an API key |
+
+Fill in: *Where do paths agree? Where do they diverge? Which is easier to debug?*
+
+---
+
+## Phase 4 — Analysis (~10 min)
+
+In the deliverable section:
+
+- Top **3 problems** (not just “FAIL” — explain *why*)
+- **One concrete fix** (tool change, pipeline change, or doc change)
+- Would you trust this in real research? **Yes / not yet / no**
+
+---
+
+## Phase 5 — Stretch if you finish early (~15 min)
+
+Pick **one**:
+
+- Implement your suggested fix (small patch — overlaps with Track A)
+- Add your 3 queries to `scripts/integration_demo.py` and re-run
+- Try IDE MCP config (optional section below)
+- Help another group interpret their failures
+
+---
+
+## Optional: IDE MCP config
 
 Wire MCP into VS Code, Cursor, or Claude Desktop — **not required**.
 
 <details>
 <summary>IDE MCP config</summary>
-
-Project root as `cwd`, Python from `hackathon-haicon`:
 
 ```json
 {
@@ -62,9 +118,23 @@ Project root as `cwd`, Python from `hackathon-haicon`:
 
 ## Your deliverable (fill in before 1:35)
 
+### Phase 1 — Bundled queries
+
 | Query | Pass/Fail | What happened |
 |-------|-----------|---------------|
 | | | |
+
+### Phase 2 — Your queries (≥3)
+
+| Query | Tool used | Pass/Fail | Notes |
+|-------|-----------|-----------|-------|
+| | | | |
+
+### Phase 3 — Path comparison
+
+**Question tested:**  
+
+**Tools only vs bot:**  
 
 ### Top 3 problems
 
@@ -72,6 +142,6 @@ Project root as `cwd`, Python from `hackathon-haicon`:
 2.  
 3.  
 
-### One fix to suggest
+### One fix to suggest (or implement in Phase 5)
 
-### Optional: paste `integration_demo.py` output below
+### Optional: paste terminal output below

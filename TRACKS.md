@@ -12,7 +12,9 @@ Open **`FEATURE_BACKLOG_Track_A.md`**. Pick a task, implement it, fill in the de
 
 ## Track C — Integration experiments
 
-Open **`INTEGRATION_Track_C.md`**. Run `python scripts/integration_demo.py`, fill in the deliverable section at the bottom. **No API key required.**
+Open **`INTEGRATION_Track_C.md`**. Five phases (~60 min): baseline demo → your queries → compare tools vs bot → failure analysis → optional small fix. **No API key** for most phases.
+
+Easiest to **start**, not necessarily shortest if done fully.
 
 ## Setup (first 10 min)
 
