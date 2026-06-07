@@ -1,4 +1,4 @@
-# Feature backlog (Track A)
+# Feature backlog — Track A
 
 Pick one task; get facilitator sign-off if unsure about scope.
 

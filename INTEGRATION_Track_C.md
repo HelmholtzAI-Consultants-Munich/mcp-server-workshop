@@ -1,4 +1,4 @@
-# Integration guide (Track C)
+# Integration guide — Track C
 
 **You do not need IDE or MCP setup knowledge.**
 
@@ -10,7 +10,7 @@ cd agentic-workshop-hackathon
 python scripts/integration_demo.py
 ```
 
-Copy the output into `INTEGRATION_REPORT.md`. For each query, note PASS/FAIL and why.
+Copy the output into `INTEGRATION_REPORT_Track_C.md`. For each query, note PASS/FAIL and why.
 
 Add two questions of your own (change the script or run manually):
 
@@ -30,7 +30,7 @@ asyncio.run(main())
 
 ## Deliverable
 
-`INTEGRATION_REPORT.md`:
+Fill in `INTEGRATION_REPORT_Track_C.md`:
 
 | Query | Pass/Fail | What happened |
 |-------|-----------|---------------|

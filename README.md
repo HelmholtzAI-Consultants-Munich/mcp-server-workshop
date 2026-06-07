@@ -25,13 +25,11 @@ Add your own PDFs to `papers/`.
 
 See `PARTICIPANT_SHEET.md` and `TRACKS.md`.
 
-| Track | Focus | Key files |
-|-------|--------|-----------|
-| A | Feature sprint | `FEATURE_BACKLOG.md` |
-| B | Architecture planning | `templates/DESIGN_PROPOSAL.md` |
-| C | Integration test | `INTEGRATION.md`, `scripts/integration_demo.py` |
-
-Deliverables: `GROUP_OUTPUT.md` (A), design proposal (B), `INTEGRATION_REPORT.md` (C).
+| Track | Guide | Deliverable |
+|-------|--------|-------------|
+| A | `FEATURE_BACKLOG_Track_A.md` | `GROUP_OUTPUT_Track_A.md` |
+| B | `DESIGN_PROPOSAL_Track_B.md` | same file (filled in) |
+| C | `INTEGRATION_Track_C.md` | `INTEGRATION_REPORT_Track_C.md` |
 
 ## Layout
 

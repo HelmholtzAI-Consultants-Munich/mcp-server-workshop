@@ -4,7 +4,7 @@ No prep required. Start with `PARTICIPANT_SHEET.md`.
 
 ## Track A — Feature sprint
 
-Extend this repo using `FEATURE_BACKLOG.md`. Deliverable: working feature + demo command in `GROUP_OUTPUT.md`.
+Extend this repo using `FEATURE_BACKLOG_Track_A.md`. Deliverable: working feature + demo command in `GROUP_OUTPUT_Track_A.md`.
 
 ## Track B — Architecture planning
 
@@ -13,13 +13,13 @@ Extend this repo using `FEATURE_BACKLOG.md`. Deliverable: working feature + demo
 - **your own research project**, or  
 - **another project** you know (lab tool, open-source repo, colleague’s system, etc.)
 
-Use this repo as a **reference pattern**, not something you must fork. Deliverable: completed `templates/DESIGN_PROPOSAL.md`.
+Use this repo as a **reference pattern**, not something you must fork. Deliverable: completed `DESIGN_PROPOSAL_Track_B.md`.
 
 **Best if install fails or you prefer whiteboard/design work.**
 
 ## Track C — Integration experiments
 
-Run `python scripts/integration_demo.py`, document results in `INTEGRATION_REPORT.md`. **No API key required.**
+Follow `INTEGRATION_Track_C.md`. Run `python scripts/integration_demo.py`, document results in `INTEGRATION_REPORT_Track_C.md`. **No API key required.**
 
 ## Setup (first 10 min of the block)
 
@@ -32,3 +32,11 @@ Run `python scripts/integration_demo.py`, document results in `INTEGRATION_REPOR
 ## Note on RAG
 
 The baseline bot is a **simple RAG-shaped pipeline** (retrieve excerpts → generate). Track B asks where that pattern belongs in real projects; Tracks A/C build or test it here.
+
+## Track files (quick find)
+
+| Track | Guide | Deliverable |
+|-------|--------|-------------|
+| A | `FEATURE_BACKLOG_Track_A.md` | `GROUP_OUTPUT_Track_A.md` |
+| B | `DESIGN_PROPOSAL_Track_B.md` | same file (filled in) |
+| C | `INTEGRATION_Track_C.md` | `INTEGRATION_REPORT_Track_C.md` |

@@ -4,12 +4,11 @@
 
 ## 1. Get the project
 
-Copy `agentic-workshop-hackathon` from USB / AirDrop / shared link to your laptop.
+Clone or copy this folder to your laptop.
 
 ## 2. Setup (10 min — ask for help if stuck)
 
 ```bash
-cd agentic-workshop-hackathon
 conda env create -f environment.yml
 conda activate hackathon-haicon
 python scripts/generate_sample_pdfs.py
@@ -20,19 +19,19 @@ python run_bot.py --dry-run
 
 ## 3. Pick one track (your group chooses)
 
-| Track | You do | File to open |
-|-------|--------|--------------|
-| **A** Feature | Add one feature from backlog | `FEATURE_BACKLOG.md` |
-| **B** Architecture | Plan a new tool **or** integrate this MCP + phased pattern into **your project** or **another project** you choose — design only, no code | `templates/DESIGN_PROPOSAL.md` |
-| **C** Integration | Run `python scripts/integration_demo.py`, write `INTEGRATION_REPORT.md` | `INTEGRATION.md` |
+| Track | You do | Open this file |
+|-------|--------|----------------|
+| **A** Feature | Add one feature from backlog | `FEATURE_BACKLOG_Track_A.md` |
+| **B** Architecture | Plan integration into **your project** or **another project** — design only | `DESIGN_PROPOSAL_Track_B.md` |
+| **C** Integration | Run `python scripts/integration_demo.py`, write report | `INTEGRATION_Track_C.md` |
 
-Details: `TRACKS.md`
+Overview: `TRACKS.md`
 
 ## 4. Deliverable (due before 1:35)
 
-- **A:** `GROUP_OUTPUT.md` + working demo command  
-- **B:** completed architecture proposal (own or external project)  
-- **C:** `INTEGRATION_REPORT.md`  
+- **A:** `GROUP_OUTPUT_Track_A.md` + working demo command  
+- **B:** completed `DESIGN_PROPOSAL_Track_B.md`  
+- **C:** `INTEGRATION_REPORT_Track_C.md`  
 
 ## 5. The bot (four steps)
 

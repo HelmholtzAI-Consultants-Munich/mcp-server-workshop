@@ -1,4 +1,4 @@
-# Architecture planning proposal (Track B)
+# Architecture planning proposal — Track B
 
 **No implementation in this track** — design and integration planning only.
 

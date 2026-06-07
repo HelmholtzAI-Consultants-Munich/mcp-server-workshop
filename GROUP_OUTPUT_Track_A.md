@@ -1,4 +1,4 @@
-# Group output
+# Group output — Track A
 
 **Track:** A / B / C  
 **Morning topic:**  
