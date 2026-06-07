@@ -15,23 +15,21 @@ python scripts/generate_sample_pdfs.py
 python run_bot.py --dry-run
 ```
 
-**No API key needed.** If install fails → join **Track B** (planning, no code).
+**No API key needed.** If install fails → **Track B** (no code).
 
-## 3. Pick one track (your group chooses)
+## 3. Pick one track — one file each
 
-| Track | You do | Open this file |
-|-------|--------|----------------|
-| **A** Feature | Add one feature from backlog | `FEATURE_BACKLOG_Track_A.md` |
-| **B** Architecture | Plan integration into **your project** or **another project** — design only | `DESIGN_PROPOSAL_Track_B.md` |
-| **C** Integration | Run `python scripts/integration_demo.py`, write report | `INTEGRATION_Track_C.md` |
+| Track | Open this file |
+|-------|----------------|
+| **A** Feature sprint | `FEATURE_BACKLOG_Track_A.md` |
+| **B** Architecture planning | `DESIGN_PROPOSAL_Track_B.md` |
+| **C** Integration experiments | `INTEGRATION_Track_C.md` |
 
 Overview: `TRACKS.md`
 
-## 4. Deliverable (due before 1:35)
+## 4. Deliverable
 
-- **A:** `GROUP_OUTPUT_Track_A.md` + working demo command  
-- **B:** completed `DESIGN_PROPOSAL_Track_B.md`  
-- **C:** `INTEGRATION_REPORT_Track_C.md`  
+Fill in the **“Your deliverable”** section at the bottom of your track file before 1:35.
 
 ## 5. The bot (four steps)
 

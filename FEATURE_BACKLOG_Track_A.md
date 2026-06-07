@@ -1,4 +1,4 @@
-# Feature backlog — Track A
+# Feature sprint — Track A
 
 Pick one task; get facilitator sign-off if unsure about scope.
 
@@ -12,3 +12,20 @@ Pick one task; get facilitator sign-off if unsure about scope.
 | A6 | L | Chunk embeddings + k-means clusters in answer |
 | A7 | S | Path safety tests for PDF MCP |
 | A8 | M | Export answer as Markdown report with timestamp |
+
+No API key needed for **A1, A5, A7, A8**.
+
+---
+
+## Your deliverable (fill in before 1:35)
+
+**Task chosen (ID):**  
+**Group members:**  
+
+### Demo command
+
+```bash
+# command here
+```
+
+### What worked / what didn’t

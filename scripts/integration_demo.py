@@ -40,7 +40,7 @@ async def main() -> int:
                 print(f"    {line[:100]}")
             print()
 
-    print("Done. For Track C: copy this output into INTEGRATION_REPORT_Track_C.md")
+    print("Done. Fill in the deliverable section at the bottom of INTEGRATION_Track_C.md")
     print("Note any FAIL rows and why (wrong file, no matches, etc.).")
     return 0
 

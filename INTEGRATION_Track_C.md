@@ -1,16 +1,14 @@
-# Integration guide — Track C
+# Integration experiments — Track C
 
 **You do not need IDE or MCP setup knowledge.**
 
-## Required (terminal only)
+## Run (terminal only)
 
 ```bash
 conda activate hackathon-haicon
 cd agentic-workshop-hackathon
 python scripts/integration_demo.py
 ```
-
-Copy the output into `INTEGRATION_REPORT_Track_C.md`. For each query, note PASS/FAIL and why.
 
 Add two questions of your own (change the script or run manually):
 
@@ -28,24 +26,21 @@ asyncio.run(main())
 "
 ```
 
-## Deliverable
+## Test queries (used by integration_demo.py)
 
-Fill in `INTEGRATION_REPORT_Track_C.md`:
-
-| Query | Pass/Fail | What happened |
-|-------|-----------|---------------|
-| | | |
-
-Plus: top 3 problems, one fix you’d suggest.
+1. What methods are used?
+2. What accuracy was reported?
+3. What optimization hyperparameters are mentioned?
+4. What failure cases are described?
 
 ---
 
-## Optional stretch (skip if confusing)
+## Optional stretch
 
-Wire MCP into VS Code, Cursor, or Claude Desktop — see paths below. **Not required for Track C.**
+Wire MCP into VS Code, Cursor, or Claude Desktop — **not required**.
 
 <details>
-<summary>VS Code / Cursor / Claude Desktop MCP config</summary>
+<summary>IDE MCP config</summary>
 
 Project root as `cwd`, Python from `hackathon-haicon`:
 
@@ -61,13 +56,22 @@ Project root as `cwd`, Python from `hackathon-haicon`:
 }
 ```
 
-Paste into your editor’s MCP settings. If it doesn’t work, stay on terminal path above.
-
 </details>
 
-## Test queries (used by integration_demo.py)
+---
 
-1. What methods are used?
-2. What accuracy was reported?
-3. What optimization hyperparameters are mentioned?
-4. What failure cases are described?
+## Your deliverable (fill in before 1:35)
+
+| Query | Pass/Fail | What happened |
+|-------|-----------|---------------|
+| | | |
+
+### Top 3 problems
+
+1.  
+2.  
+3.  
+
+### One fix to suggest
+
+### Optional: paste `integration_demo.py` output below

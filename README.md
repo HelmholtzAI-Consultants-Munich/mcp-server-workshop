@@ -23,13 +23,13 @@ Add your own PDFs to `papers/`.
 
 ## Hackathon tracks
 
-See `PARTICIPANT_SHEET.md` and `TRACKS.md`.
+See `PARTICIPANT_SHEET.md` and `TRACKS.md`. **One file per track:**
 
-| Track | Guide | Deliverable |
-|-------|--------|-------------|
-| A | `FEATURE_BACKLOG_Track_A.md` | `GROUP_OUTPUT_Track_A.md` |
-| B | `DESIGN_PROPOSAL_Track_B.md` | same file (filled in) |
-| C | `INTEGRATION_Track_C.md` | `INTEGRATION_REPORT_Track_C.md` |
+| Track | File |
+|-------|------|
+| A | `FEATURE_BACKLOG_Track_A.md` |
+| B | `DESIGN_PROPOSAL_Track_B.md` |
+| C | `INTEGRATION_Track_C.md` |
 
 ## Layout
 
