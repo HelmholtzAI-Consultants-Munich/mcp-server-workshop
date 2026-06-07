@@ -23,7 +23,7 @@ python run_bot.py --dry-run
 | Track | You do | File to open |
 |-------|--------|--------------|
 | **A** Feature | Add one feature from backlog | `FEATURE_BACKLOG.md` |
-| **B** Plan | Design an agent for your science | `templates/DESIGN_PROPOSAL.md` |
+| **B** Architecture | Plan a new tool **or** integrate this MCP + phased pattern into **your project** or **another project** you choose — design only, no code | `templates/DESIGN_PROPOSAL.md` |
 | **C** Integration | Run `python scripts/integration_demo.py`, write `INTEGRATION_REPORT.md` | `INTEGRATION.md` |
 
 Details: `TRACKS.md`
@@ -31,7 +31,7 @@ Details: `TRACKS.md`
 ## 4. Deliverable (due before 1:35)
 
 - **A:** `GROUP_OUTPUT.md` + working demo command  
-- **B:** completed design proposal  
+- **B:** completed architecture proposal (own or external project)  
 - **C:** `INTEGRATION_REPORT.md`  
 
 ## 5. The bot (four steps)
