@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+*.egg-info/
+
+# Facilitator-only (keep local)
+SIMPLE_FACILITATOR.md
+ONE_PAGE_FACILITATOR.md
+EXACT_RUNBOOK.md
+FACILITATOR.md
+solution/
