@@ -30,7 +30,11 @@ class ResearchBot:
         key = os.getenv("OPENAI_API_KEY")
         if not key:
             raise RuntimeError("OPENAI_API_KEY not set")
-        return OpenAI(api_key=key)
+        kwargs: dict = {"api_key": key}
+        base_url = os.getenv("OPENAI_BASE_URL", "").strip()
+        if base_url:
+            kwargs["base_url"] = base_url
+        return OpenAI(**kwargs)
 
     async def discover(self) -> list[dict]:
         data = await self.pdf.call_tool("list_pdfs", {})

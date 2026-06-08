@@ -25,6 +25,8 @@ If you change `.env`, **run the command again** (each `python run_bot.py` is a f
 
 If the key still isn’t picked up: check you’re not overriding it in the shell (`echo $OPENAI_API_KEY`). The bot loads `.env` with override enabled.
 
+For a **custom API endpoint** (Azure, proxy, etc.), set `OPENAI_BASE_URL` in `.env` — include the `/v1` path, e.g. `https://your-resource.cognitiveservices.azure.com/openai/v1/`. Set `OPENAI_MODEL` to your deployment name.
+
 Run all commands from the **project root** (the folder containing `run_bot.py`). Otherwise you may see `ModuleNotFoundError: No module named 'agent'`.
 
 ## Run
