@@ -41,4 +41,4 @@ Fill in the **“Your deliverable”** section at the bottom of your track file 
 3. **Read** — extract / search text  
 4. **Answer** — report with citations  
 
-Code: `run_bot.py`, `agent/research_bot.py`, `mcp_servers/`
+Code: **`python run_bot.py`** from project root (or `python agent/research_bot.py`, or `python -m agent.research_bot`)

@@ -1,11 +1,17 @@
 import json
 import os
+import sys
 from dataclasses import dataclass
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from agent.mcp_client import MCPClient, ROOT
+from agent.mcp_client import MCPClient
 from agent.prompts import ANSWER_SYSTEM, SELECT_SYSTEM, answer_user, select_user
 
 load_dotenv(ROOT / ".env")
@@ -87,3 +93,35 @@ class ResearchBot:
             "papers_found": len(papers),
             "answer": text,
         }
+
+
+async def _cli(question: str, dry_run: bool) -> int:
+    async with MCPClient(PDF_SERVER) as pdf, MCPClient(SYSTEM_SERVER) as system:
+        bot = ResearchBot(pdf=pdf, system=system)
+        print("Step 1 — Discover")
+        papers = await bot.discover()
+        for p in papers:
+            print(f"  {p.get('filename')}: {p.get('page_count', '?')} pages")
+        if dry_run:
+            return 0
+        print("Step 2 — Select")
+        selected = await bot.select(question, papers)
+        print(f"  {selected}")
+        print("Step 3 — Read")
+        excerpts = await bot.read(selected)
+        print(f"  {len(excerpts)} chars")
+        print("Step 4 — Answer")
+        print("\n" + (await bot.answer(question, excerpts)))
+    return 0
+
+
+if __name__ == "__main__":
+    import argparse
+    import asyncio
+
+    parser = argparse.ArgumentParser(description="Mini research bot over local PDFs")
+    parser.add_argument("question", nargs="?", default="What methods are used?")
+    parser.add_argument("--dry-run", action="store_true", help="List PDFs only")
+    args = parser.parse_args()
+    os.chdir(ROOT)
+    raise SystemExit(asyncio.run(_cli(args.question, args.dry_run)))
