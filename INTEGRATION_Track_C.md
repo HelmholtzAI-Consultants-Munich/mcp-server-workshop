@@ -42,7 +42,9 @@ Add **at least 3 questions** — ideally one per group member’s domain. Try th
 
 ```bash
 python -c "
-import asyncio
+import asyncio, sys
+from pathlib import Path
+sys.path.insert(0, str(Path('.').resolve()))
 from agent.mcp_client import MCPClient
 async def main():
     async with MCPClient('mcp_servers.pdf_server') as c:
@@ -53,6 +55,8 @@ async def main():
 asyncio.run(main())
 "
 ```
+
+Run from the **project root** (same folder as `run_bot.py`). Or use `python scripts/integration_demo.py` instead.
 
 Also try **`extract_pdf_text`** (full pages vs keyword search). Log which tool worked better per query.
 

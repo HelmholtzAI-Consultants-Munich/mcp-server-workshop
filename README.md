@@ -19,6 +19,8 @@ cp .env.example .env   # optional: OPENAI_API_KEY for full LLM run
 python scripts/generate_sample_pdfs.py
 ```
 
+Run all commands from the **project root** (the folder containing `run_bot.py`). Otherwise you may see `ModuleNotFoundError: No module named 'agent'`.
+
 ## Run
 
 ```bash
