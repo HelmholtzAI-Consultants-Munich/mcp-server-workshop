@@ -14,7 +14,7 @@ from openai import OpenAI
 from agent.mcp_client import MCPClient
 from agent.prompts import ANSWER_SYSTEM, SELECT_SYSTEM, answer_user, select_user
 
-load_dotenv(ROOT / ".env")
+load_dotenv(ROOT / ".env", override=True)
 
 PDF_SERVER = "mcp_servers.pdf_server"
 SYSTEM_SERVER = "mcp_servers.system_server"

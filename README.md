@@ -19,6 +19,12 @@ cp .env.example .env   # optional: OPENAI_API_KEY for full LLM run
 python scripts/generate_sample_pdfs.py
 ```
 
+`.env` must live in the **project root** (same folder as `run_bot.py`), not in `agent/` or a parent folder.
+
+If you change `.env`, **run the command again** (each `python run_bot.py` is a fresh process).
+
+If the key still isn’t picked up: check you’re not overriding it in the shell (`echo $OPENAI_API_KEY`). The bot loads `.env` with override enabled.
+
 Run all commands from the **project root** (the folder containing `run_bot.py`). Otherwise you may see `ModuleNotFoundError: No module named 'agent'`.
 
 ## Run
