@@ -1,0 +1,18 @@
+{
+  "papers": [
+    {
+      "filename": "sample_methods.pdf",
+      "title": "Sample Methods: A Minimal Protocol",
+      "authors": "A. Author, B. Researcher",
+      "year": 2024,
+      "tags": ["methods", "protocol", "sample"]
+    },
+    {
+      "filename": "sample_results.pdf",
+      "title": "Sample Results and Discussion",
+      "authors": "C. Scientist, D. Analyst",
+      "year": 2025,
+      "tags": ["results", "evaluation", "sample"]
+    }
+  ]
+}

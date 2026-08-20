@@ -98,5 +98,31 @@ def search_pdf_text(
     return json.dumps({"filename": path.name, "matches": hits, "text": "\n".join(hits[:80])})
 
 
+@mcp.tool()
+def list_papers(papers_dir: str = "papers") -> str:
+    """List papers from papers/manifest.json with curated metadata.
+
+    Unlike list_pdfs, which scans the directory, this returns the curated
+    catalogue in manifest.json and flags whether each entry's PDF is present.
+    """
+    root = PAPERS_DIR if papers_dir == "papers" else (PAPERS_DIR.parent / papers_dir).resolve()
+    manifest_path = root / "manifest.json"
+    if not manifest_path.is_file():
+        return json.dumps({"papers": [], "error": f"Manifest not found: {manifest_path}"})
+    try:
+        entries = json.loads(manifest_path.read_text()).get("papers", [])
+    except json.JSONDecodeError as exc:
+        return json.dumps({"papers": [], "error": f"Invalid manifest.json: {exc}"})
+    papers = []
+    for entry in entries:
+        name = entry.get("filename", "")
+        try:
+            available = safe_pdf_path(name, root).is_file()
+        except ValueError:
+            available = False
+        papers.append({**entry, "available": available})
+    return json.dumps({"papers_dir": str(root), "papers": papers})
+
+
 if __name__ == "__main__":
     mcp.run()
