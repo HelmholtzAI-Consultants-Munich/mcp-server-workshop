@@ -6,3 +6,6 @@ pypdf==6.16.1
 openai==3.3.0
 python-dotenv==1.2.3
 fpdf2==2.8.8
+
+# Needed for the Track A test task (A7).
+pytest==9.0.1
