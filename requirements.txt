@@ -1,5 +1,8 @@
-mcp>=1.0.0
-pypdf>=4.0.0
-openai>=1.0.0
-python-dotenv>=1.0.0
-fpdf2>=2.7.0
+# Pinned to the exact versions verified end to end on Python 3.12.13.
+# The mcp pin is the critical one: mcp 2.0 removed mcp.server.fastmcp, which
+# both MCP servers import, and the only symptom is a cryptic "Connection closed".
+mcp==1.29.0
+pypdf==6.16.1
+openai==3.3.0
+python-dotenv==1.2.3
+fpdf2==2.8.8
