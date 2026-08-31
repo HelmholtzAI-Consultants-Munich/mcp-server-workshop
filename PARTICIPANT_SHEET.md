@@ -16,6 +16,14 @@ python scripts/generate_sample_pdfs.py
 python run_bot.py --dry-run
 ```
 
+No conda? Replace the two conda lines with:
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
 **`ModuleNotFoundError: No module named 'agent'`** → you are not in the project root. `cd` into the cloned folder first.
 
 **No API key needed.** If install fails → **Track B** (no code).

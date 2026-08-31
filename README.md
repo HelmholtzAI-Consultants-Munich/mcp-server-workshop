@@ -18,6 +18,14 @@ conda activate hackathon-haicon
 cp .env.example .env   # optional: OPENAI_API_KEY for full LLM run
 python scripts/generate_sample_pdfs.py
 ```
+Or, if you do not have conda:
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
 
 `.env` must live in the **project root** (same folder as `run_bot.py`), not in `agent/` or a parent folder.
 

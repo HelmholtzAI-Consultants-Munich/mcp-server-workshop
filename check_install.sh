@@ -110,7 +110,7 @@ if [ -f .env ]; then
     hint "add your real key to .env when you have one (not needed for --dry-run)"
   fi
 else
-  note "no .env yet (fine for --dry-run and the no-key tasks A1/A5/A7/A8)"
+  note "no .env yet (fine for --dry-run and the no-LLM tasks A1 and A7)"
   hint "cp .env.example .env   # then add your key later"
 fi
 
