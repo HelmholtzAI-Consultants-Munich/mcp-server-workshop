@@ -50,9 +50,9 @@ else
   mm=$("$PYTHON" -c 'import sys;print("%d.%d"%sys.version_info[:2])' 2>/dev/null)
   ok "using $PYTHON ($ver)"
   case "$mm" in
-    3.12) : ;;
-    3.10 | 3.11 | 3.13) note "environment.yml pins Python 3.12; $ver usually works but is untested" ;;
-    *) bad "Python $ver is outside the supported range; use 3.12"
+    3.11 | 3.12) : ;;
+    3.13) note "verified on 3.11 and 3.12; $ver usually works but is untested" ;;
+    *) bad "Python $ver is too old; this project needs 3.11 or newer"
        hint "conda env create -f environment.yml && conda activate hackathon-haicon" ;;
   esac
   if [ -n "${CONDA_DEFAULT_ENV:-}" ]; then
@@ -103,7 +103,7 @@ fi
 # --- 4. api key (optional) ---------------------------------------------------
 printf "\n%s\n" "${BOLD}API key${RESET} (optional - only the full LLM run needs it)"
 if [ -f .env ]; then
-  if grep -qE '^OPENAI_API_KEY=.+' .env && ! grep -qE '^OPENAI_API_KEY=sk-your-key-here' .env; then
+  if grep -qE '^OPENAI_API_KEY=.+' .env && ! grep -qE '^OPENAI_API_KEY=(sk-)?your-key-here' .env; then
     ok ".env present with OPENAI_API_KEY set"
   else
     note ".env present but OPENAI_API_KEY still looks like the placeholder"

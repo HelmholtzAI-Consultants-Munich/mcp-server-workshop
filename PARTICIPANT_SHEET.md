@@ -19,10 +19,14 @@ python run_bot.py --dry-run
 No conda? Replace the two conda lines with:
 
 ```bash
-python3.12 -m venv .venv
+python3 --version              # must be 3.11 or newer
+python3 -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
+
+If `python3 --version` is older than 3.11, install Python 3.12 from
+[python.org](https://www.python.org/downloads/) and run `python3.12 -m venv .venv` instead.
 
 **`ModuleNotFoundError: No module named 'agent'`** → you are not in the project root. `cd` into the cloned folder first.
 

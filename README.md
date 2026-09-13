@@ -21,10 +21,14 @@ python scripts/generate_sample_pdfs.py
 Or, if you do not have conda:
 
 ```bash
-python3.12 -m venv .venv
+python3 --version              # must be 3.11 or newer
+python3 -m venv .venv
 source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
+
+If `python3 --version` is older than 3.11, install Python 3.12 from
+[python.org](https://www.python.org/downloads/) and run `python3.12 -m venv .venv` instead.
 
 
 `.env` must live in the **project root** (same folder as `run_bot.py`), not in `agent/` or a parent folder.
