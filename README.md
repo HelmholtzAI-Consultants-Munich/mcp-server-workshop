@@ -68,3 +68,6 @@ Fill in the **deliverable section** at the bottom of your track file before shar
 - `mcp_servers/` — PDF and system MCP tools
 - `agent/` — MCP client and research bot
 - `run_bot.py` — CLI entry point
+
+For tool registration, schema inspection, automatic discovery, and shared PDF helpers,
+see [the MCP walkthrough](MCP_WALKTHROUGH.md).
