@@ -19,12 +19,9 @@ def _pdf_meta(path: Path) -> dict:
 
 
 @mcp.tool()
-def list_pdfs(papers_dir: str = "papers") -> str:
+def list_pdfs() -> str:
     """List PDF files in the papers directory."""
-    root = Path(papers_dir)
-    if not root.is_absolute():
-        root = PAPERS_DIR if papers_dir == "papers" else (PAPERS_DIR.parent / papers_dir)
-    root = root.resolve()
+    root = PAPERS_DIR.resolve()
     if not root.is_dir():
         return json.dumps({"papers": [], "error": f"Directory not found: {root}"})
     entries = sorted(root.glob("*.pdf"), key=lambda p: p.name.lower())
@@ -42,11 +39,9 @@ def extract_pdf_text(
     filename: str,
     max_pages: int = 5,
     max_chars: int = 12000,
-    papers_dir: str = "papers",
 ) -> str:
     """Extract text from a PDF (capped by pages and characters)."""
-    root = PAPERS_DIR if papers_dir == "papers" else (PAPERS_DIR.parent / papers_dir).resolve()
-    path = safe_pdf_path(filename, root)
+    path = safe_pdf_path(filename)
     if not path.is_file():
         return json.dumps({"error": f"File not found: {filename}"})
     reader = PdfReader(str(path))
@@ -79,11 +74,9 @@ def search_pdf_text(
     filename: str,
     query: str,
     max_pages: int = 10,
-    papers_dir: str = "papers",
 ) -> str:
     """Return lines from a PDF that contain any query term (case-insensitive)."""
-    root = PAPERS_DIR if papers_dir == "papers" else (PAPERS_DIR.parent / papers_dir).resolve()
-    path = safe_pdf_path(filename, root)
+    path = safe_pdf_path(filename)
     if not path.is_file():
         return json.dumps({"error": f"File not found: {filename}"})
     terms = {t.lower() for t in query.split() if len(t) > 2}
@@ -99,13 +92,13 @@ def search_pdf_text(
 
 
 @mcp.tool()
-def list_papers(papers_dir: str = "papers") -> str:
+def list_papers() -> str:
     """List papers from papers/manifest.json with curated metadata.
 
     Unlike list_pdfs, which scans the directory, this returns the curated
     catalogue in manifest.json and flags whether each entry's PDF is present.
     """
-    root = PAPERS_DIR if papers_dir == "papers" else (PAPERS_DIR.parent / papers_dir).resolve()
+    root = PAPERS_DIR.resolve()
     manifest_path = root / "manifest.json"
     if not manifest_path.is_file():
         return json.dumps({"papers": [], "error": f"Manifest not found: {manifest_path}"})
@@ -117,7 +110,7 @@ def list_papers(papers_dir: str = "papers") -> str:
     for entry in entries:
         name = entry.get("filename", "")
         try:
-            available = safe_pdf_path(name, root).is_file()
+            available = safe_pdf_path(name).is_file()
         except ValueError:
             available = False
         papers.append({**entry, "available": available})
