@@ -2,20 +2,32 @@
 import argparse
 import asyncio
 import sys
+from contextlib import AsyncExitStack
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
-from agent.mcp_client import MCPClient
+from agent.mcp_client import connect_servers, owners_of
 from agent.research_bot import ResearchBot
-
-PDF_SERVER = "mcp_servers.pdf_server"
-SYSTEM_SERVER = "mcp_servers.system_server"
 
 
 async def main(question: str, dry_run: bool) -> int:
-    async with MCPClient(PDF_SERVER) as pdf, MCPClient(SYSTEM_SERVER) as system:
+    async with AsyncExitStack() as stack:
+        connected, failures = await connect_servers(stack)
+        for module, exc in failures.items():
+            print(f"Warning: {module} failed to start ({exc}); skipping it.")
+        owners = owners_of(connected)
+
+        # The pipeline needs a server that can list PDFs and one that can tell
+        # the time. Pick them by tool, not by filename, so adding your own
+        # server never breaks this.
+        pdf, system = owners.get("list_pdfs"), owners.get("get_current_time")
+        if pdf is None or system is None:
+            missing = [n for n in ("list_pdfs", "get_current_time") if n not in owners]
+            print(f"No server provides: {', '.join(missing)}. Run: python call_tool.py --list")
+            return 1
+
         bot = ResearchBot(pdf=pdf, system=system)
         print("Step 1 — Discover")
         papers = await bot.discover()
