@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
-from agent.mcp_client import connect_servers, explain_failure, owners_of
+from agent.mcp_client import MCPToolError, connect_servers, explain_failure, owners_of
 
 
 def _print_listing(connected: dict, failures: dict) -> None:
@@ -71,7 +71,12 @@ async def main(argv: list[str]) -> int:
             print("Run: python call_tool.py --list", file=sys.stderr)
             return 1
 
-        print(json.dumps(await client.call_tool(name, arguments), indent=2))
+        try:
+            result = await client.call_tool(name, arguments)
+        except MCPToolError as exc:
+            print(f"Tool '{name}' failed: {exc}", file=sys.stderr)
+            return 1
+        print(json.dumps(result, indent=2))
         return 0
 
 

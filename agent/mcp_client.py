@@ -26,6 +26,10 @@ def discover_server_modules() -> list[str]:
     ]
 
 
+class MCPToolError(RuntimeError):
+    """The server reported a tool execution error (MCP isError)."""
+
+
 class MCPClient:
     def __init__(self, module: str):
         self.module = module
@@ -74,6 +78,8 @@ class MCPClient:
         text = "".join(
             c.text for c in result.content if isinstance(c, TextContent)
         )
+        if result.isError:
+            raise MCPToolError(text or f"Tool {name} failed without an explanation")
         try:
             return json.loads(text)
         except json.JSONDecodeError:

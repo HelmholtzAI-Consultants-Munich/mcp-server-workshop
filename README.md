@@ -71,3 +71,6 @@ Fill in the **deliverable section** at the bottom of your track file before shar
 
 For tool registration, schema inspection, automatic discovery, and shared PDF helpers,
 see [the MCP walkthrough](MCP_WALKTHROUGH.md).
+
+For the student adapter and optional tool-calling agent, see
+[the agent exercise](AGENT_EXERCISE.md). The four-step pipeline remains available.
