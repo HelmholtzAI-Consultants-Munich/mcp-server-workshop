@@ -25,14 +25,32 @@ source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-If `python3 --version` is older than 3.11, install Python 3.12 from
-[python.org](https://www.python.org/downloads/) and run `python3.12 -m venv .venv` instead.
+If `python3 --version` is older than 3.11, install a supported Python version
+from [python.org](https://www.python.org/downloads/) and repeat the setup.
 
 **`ModuleNotFoundError: No module named 'agent'`** → you are not in the project root. `cd` into the cloned folder first.
 
-**No API key needed.** If install fails → **Track B** (no code).
+**No API key is needed for setup, tool discovery, or the no-LLM tasks.** If
+install fails, ask for help or choose **Track B** (no code).
 
-## 3. Pick one track — one file each
+## 3. Understand the MCP exercise
+
+Open `MCP_WALKTHROUGH.md`, then inspect the available tools:
+
+```bash
+python call_tool.py --list
+```
+
+The command shows the names, descriptions, and JSON schemas that a model can
+see. Servers under `mcp_servers/` are discovered automatically. Files whose
+names begin with `_` are helpers and are ignored.
+
+The supplied agent exercise is documented in `AGENT_EXERCISE.md`. You complete
+the two functions in `agent/adapter.py`; the model loop in
+`agent/agent_loop.py` is provided. The existing four-step pipeline remains
+available through `python run_bot.py`.
+
+## 4. Pick one track - one file each
 
 | Track | Open this file |
 |-------|----------------|
@@ -42,11 +60,11 @@ If `python3 --version` is older than 3.11, install Python 3.12 from
 
 Overview: `TRACKS.md`
 
-## 4. Deliverable
+## 5. Deliverable
 
 Fill in the **“Your deliverable”** section at the bottom of your track file before 1:35.
 
-## 5. The bot (four steps)
+## 6. The existing bot (four steps)
 
 1. **Discover** — list PDFs in `papers/`  
 2. **Select** — pick relevant files  

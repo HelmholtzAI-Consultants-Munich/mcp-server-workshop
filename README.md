@@ -2,7 +2,9 @@
 
 Hands-on mini hackathon for the [Helmholtz Agentic AI Workshop](https://github.com/Helmholtz-AI-Matter/agentic-ai-workshop) at HAICON26.
 
-Build, plan, or stress-test a minimal **PDF research bot**: MCP tools + four steps (Discover → Select → Read → Answer) — a simple RAG pipeline over local files.
+Build, plan, or stress-test a minimal **PDF research bot**: MCP tools, an
+optional tool-calling agent, and four legacy steps (Discover, Select, Read,
+Answer) over local files.
 
 **Workshop repo (slides & overview):** [Helmholtz-AI-Matter/agentic-ai-workshop](https://github.com/Helmholtz-AI-Matter/agentic-ai-workshop)
 
@@ -27,8 +29,8 @@ source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-If `python3 --version` is older than 3.11, install Python 3.12 from
-[python.org](https://www.python.org/downloads/) and run `python3.12 -m venv .venv` instead.
+If `python3 --version` is older than 3.11, install a supported Python version
+from [python.org](https://www.python.org/downloads/) and repeat the setup.
 
 
 `.env` must live in the **project root** (same folder as `run_bot.py`), not in `agent/` or a parent folder.
@@ -46,6 +48,8 @@ Run all commands from the **project root** (the folder containing `run_bot.py`).
 ```bash
 python run_bot.py --dry-run
 python run_bot.py "What methods are used?"   # needs API key in .env
+python run_bot.py --agent --dry-run          # checks tool schemas, no API key
+python run_bot.py --agent --trace "What methods are used?"
 python scripts/integration_demo.py           # Track C, no API key
 ```
 
@@ -57,7 +61,7 @@ See `PARTICIPANT_SHEET.md` and `TRACKS.md`.
 
 | Track | Focus | File |
 |-------|--------|------|
-| **A** Feature sprint | Extend the bot (new MCP tool or pipeline step) | `FEATURE_BACKLOG_Track_A.md` |
+| **A** Feature sprint | Extend the student server, pipeline, or agent | `FEATURE_BACKLOG_Track_A.md` |
 | **B** Architecture planning | Plan agentic integration for your or another project — no code | `DESIGN_PROPOSAL_Track_B.md` |
 | **C** Integration experiments | Run tests, compare tools vs bot, report failures | `INTEGRATION_Track_C.md` |
 
