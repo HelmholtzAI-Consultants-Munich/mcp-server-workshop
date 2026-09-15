@@ -11,7 +11,7 @@ The project has two kinds of code:
 
 | Component | Path | Role |
 |-----------|------|------|
-| Student research server | `mcp_servers/research_server.py` | Your tools and later extensions |
+| Student research server | `mcp_servers/research_server.py` | Your tools and later extensions. Not in this repository yet: it arrives with the workshop starter |
 | Shipped PDF server | `mcp_servers/pdf_server.py` | Worked MCP examples and low-level PDF tools |
 | Shared PDF helpers | `mcp_servers/_pdf.py` | Reusable reading functions; not an MCP server |
 | System server | `mcp_servers/system_server.py` | `get_current_time` |
@@ -35,9 +35,11 @@ its Python signature and type hints.
 
 The simple starter tools belong in `research_server.py`. Later research
 features should extend that same server so students see one service grow from
-a small example into a useful research capability. The exact starter tool
-signatures are being finalized with the facilitator; follow the starter file
-and its tests supplied with the workshop clone.
+a small example into a useful research capability.
+
+That starter file and its tests are still being finalized with the facilitator
+and are not in this repository yet. The tasks below describe what you add to
+it once it arrives; everything else here works today.
 
 When adding PDF features, import functions from `mcp_servers._pdf` instead of
 duplicating `pypdf` setup or bypassing the `papers/` confinement. PDF readers
@@ -52,7 +54,7 @@ take filenames, not a configurable papers directory.
 | A3 | M | yes | Improve the agent-side selection logic so it ranks candidate papers before Read. This is reasoning in the agent or pipeline, not another MCP tool. | Run the relevant bot command and show which papers were ranked and selected. |
 | A4 | M | yes | Extend the supplied agent behavior with a visible tool/action trace or another bounded ReAct improvement. Keep the termination condition and iteration cap. Do not expose private model chain-of-thought. | `python run_bot.py --agent --trace "What accuracy was reported?"` |
 | A5 | S | no | Study and improve the shipped `list_papers` worked example. Keep curated manifest metadata separate from directory scanning and preserve the `available` flag. | `python call_tool.py list_papers` |
-| A7 | S | no | Add or extend path-safety tests for `safe_pdf_path`: valid filename, `..` traversal, absolute path, and missing file. | `python -m pytest tests/ -q` |
+| A7 | S | no | Add or extend path-safety tests for `safe_pdf_path`: valid filename, `..` traversal, absolute path, and missing file. | `python -m pytest tests/ --ignore=tests/test_adapter.py -q` |
 | A8 | S | no* | Add Markdown export as a tool on your research server. Include the finished answer and a timestamp from `get_current_time`; write only inside the project output area. | `python call_tool.py export_markdown '{"...": "..."}'` and inspect the generated report. |
 | A9 | S | no | Add one standard MCP extension to your research server with `@mcp.resource()` or `@mcp.prompt()`. Describe what a client receives. | `python call_tool.py --list` and demonstrate the extension through the MCP client. |
 | A10 | stretch | optional | Connect the server to a client such as Claude Desktop, Cursor, or Cline. Document the registration and one successful call. | Show the client configuration and a working tool call. |

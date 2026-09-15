@@ -22,6 +22,11 @@ These tests deliberately fail with `NotImplementedError` in the starter clone.
 They require no model, API key, or server. Complete both functions and rerun.
 Do not change the tests to hide failures.
 
+One deviation from the original specification: `dispatch` returns the decoded
+tool result rather than a string. Serializing it is the supplied loop's job,
+so participants write no JSON handling on the way out, and the adapter tests
+can compare real values instead of formatted text.
+
 ## Verify without a model
 
 ```bash
