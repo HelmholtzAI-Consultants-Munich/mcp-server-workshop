@@ -2,9 +2,9 @@
 # check_install.sh — verify your hackathon setup before the session.
 #
 # Runs no LLM calls and needs no API key. It checks Python, the required
-# packages (including the one version pin that matters), the sample PDFs, and
-# finally runs the bot in --dry-run mode. Exits non-zero if anything critical
-# fails, so it is also usable in CI.
+# packages (including the one version pin that matters), the sample PDFs,
+# pytest, automatic server discovery, and finally runs the bot in --dry-run
+# mode. Exits non-zero if anything critical fails, so it is also usable in CI.
 #
 # Usage:  bash check_install.sh        (run it from the project root)
 
@@ -88,6 +88,12 @@ if [ -n "$PYTHON" ]; then
       hint "pip install 'mcp>=1.0.0,<2.0.0'   (and pin this in requirements.txt)"
     fi
   fi
+  if "$PYTHON" -c "import pytest" 2>/dev/null; then
+    ok "pytest importable"
+  else
+    bad "pytest not installed"
+    hint "pip install -r requirements.txt"
+  fi
 fi
 
 # --- 3. sample data ----------------------------------------------------------
@@ -114,7 +120,41 @@ else
   hint "cp .env.example .env   # then add your key later"
 fi
 
-# --- 5. baseline dry run -----------------------------------------------------
+# --- 4. discovery ------------------------------------------------------------
+printf "\n%s\n" "${BOLD}MCP server discovery${RESET}"
+if [ -n "$PYTHON" ] && [ "$fail" -eq 0 ]; then
+  if out=$("$PYTHON" - <<'PY'
+from agent.mcp_client import discover_server_modules
+modules = discover_server_modules()
+assert "mcp_servers.pdf_server" in modules
+assert "mcp_servers.system_server" in modules
+assert not any(module.rsplit(".", 1)[-1].startswith("_") for module in modules)
+print(f"{len(modules)} server module(s) discovered")
+PY
+  ); then
+    ok "$out"
+  else
+    bad "automatic MCP server discovery check failed"
+    hint "run python call_tool.py --list for diagnostics"
+  fi
+else
+  note "skipping discovery until the dependency checks pass"
+fi
+
+# --- 5. tests ----------------------------------------------------------------
+printf "\n%s\n" "${BOLD}Offline tests${RESET}"
+if [ -n "$PYTHON" ] && [ "$fail" -eq 0 ]; then
+  if out=$("$PYTHON" -m pytest -q tests/test_discovery.py tests/test_pdf_helpers.py 2>&1); then
+    ok "discovery and PDF tests passed"
+  else
+    bad "offline discovery/PDF tests failed"
+    printf '%s\n' "$out" | tail -6 | sed 's/^/       /'
+  fi
+else
+  note "skipping offline tests until the checks above pass"
+fi
+
+# --- 6. baseline dry run -----------------------------------------------------
 printf "\n%s\n" "${BOLD}Baseline${RESET} (dry run - lists PDFs, no API key)"
 if [ -n "$PYTHON" ] && [ "$fail" -eq 0 ]; then
   if out=$("$PYTHON" run_bot.py --dry-run 2>&1); then
