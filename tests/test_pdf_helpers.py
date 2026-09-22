@@ -113,3 +113,30 @@ def test_four_tools_work_over_mcp_with_unchanged_schema():
             curated = await owners["list_papers"].call_tool("list_papers")
             assert any(p["available"] for p in curated["papers"])
     asyncio.run(scenario())
+
+
+# --- write-side confinement ---------------------------------------------------
+# safe_output_path is ours, not an exercise: tools that create files depend on
+# it, so it is checked here rather than in the student-facing tests.
+
+
+def test_output_path_resolves_a_plain_filename(tmp_path, monkeypatch):
+    monkeypatch.setattr(_paths, "OUTPUT_DIR", tmp_path)
+    assert _paths.safe_output_path("notes.txt") == (tmp_path / "notes.txt").resolve()
+
+
+@pytest.mark.parametrize(
+    "hostile",
+    ["../escape.txt", "../../etc/passwd", "/etc/passwd", "sub/dir.txt", "..", ""],
+)
+def test_output_path_rejects_anything_that_escapes(tmp_path, monkeypatch, hostile):
+    monkeypatch.setattr(_paths, "OUTPUT_DIR", tmp_path)
+    with pytest.raises(ValueError):
+        _paths.safe_output_path(hostile)
+
+
+def test_papers_and_output_stay_separate(tmp_path, monkeypatch):
+    monkeypatch.setattr(_paths, "PAPERS_DIR", tmp_path / "papers")
+    monkeypatch.setattr(_paths, "OUTPUT_DIR", tmp_path / "output")
+    assert _paths.safe_pdf_path("a.pdf").parent.name == "papers"
+    assert _paths.safe_output_path("a.txt").parent.name == "output"

@@ -12,6 +12,9 @@ from unittest.mock import AsyncMock
 import pytest
 
 
+pytestmark = pytest.mark.exercise
+
+
 def test_schema_preserves_names_descriptions_and_nested_parameters(adapter_impl):
     parameters = {"type": "object", "properties": {
         "filename": {"type": "string"},

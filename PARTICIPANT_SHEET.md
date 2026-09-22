@@ -33,24 +33,54 @@ from [python.org](https://www.python.org/downloads/) and repeat the setup.
 **No API key is needed for setup, tool discovery, or the no-LLM tasks.** If
 install fails, ask for help or choose **Track B** (no code).
 
-## 3. Understand the MCP exercise
+## 3. The three steps everyone does
 
-Open `MCP_WALKTHROUGH.md`, then inspect the available tools:
+Read `MCP_WALKTHROUGH.md` first. Then work through these in order.
+
+**Step 1 - write your server.** Open `mcp_servers/research_server.py` and
+implement its two tools. `save_paper_text` extracts a paper's text and saves it
+under `output/`; `list_saved` says what is there. A tool is an ordinary Python
+function with `@mcp.tool()` above it. `mcp_servers/pdf_server.py` is a working
+reference to copy the shape from.
+
+```bash
+python -m pytest tests/test_research_server.py -q
+```
+
+**Step 2 - look at what you made.**
 
 ```bash
 python call_tool.py --list
 ```
 
-The command shows the names, descriptions, and JSON schemas that a model can
-see. Servers under `mcp_servers/` are discovered automatically. Files whose
-names begin with `_` are helpers and are ignored.
+Find your two tools. Next to each is a JSON schema you never wrote: it was
+generated from your type hints, and the description is your docstring. That
+schema is exactly what a model is shown when it decides which tool to use.
 
-The supplied agent exercise is documented in `AGENT_EXERCISE.md`. You complete
-the two functions in `agent/adapter.py`; the model loop in
-`agent/agent_loop.py` is provided. The existing four-step pipeline remains
-available through `python run_bot.py`.
+Servers under `mcp_servers/` are discovered automatically, with no registration
+step. Files whose names begin with `_` are helpers and are skipped.
 
-## 4. Pick one track - one file each
+**Step 3 - let the model choose.** Complete the two functions in
+`agent/adapter.py`, following `AGENT_EXERCISE.md`. They translate between MCP's
+description of a tool and what the model's API expects, then route the model's
+chosen call to the server that owns it. The loop in `agent/agent_loop.py` is
+provided.
+
+```bash
+python -m pytest tests/test_adapter.py -q
+python run_bot.py --agent --trace "What methods are used?"
+```
+
+Both exercises ship with failing tests. That is the point: they pass when you
+are done. Everything that is not an exercise should already pass:
+
+```bash
+python -m pytest tests/ -m "not exercise" -q
+```
+
+The original four-step pipeline stays available through `python run_bot.py`.
+
+## 4. Then pick one extension - one file each
 
 | Track | Open this file |
 |-------|----------------|

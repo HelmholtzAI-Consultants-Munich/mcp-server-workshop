@@ -144,8 +144,8 @@ fi
 # --- 5. tests ----------------------------------------------------------------
 printf "\n%s\n" "${BOLD}Offline tests${RESET}"
 if [ -n "$PYTHON" ] && [ "$fail" -eq 0 ]; then
-  if out=$("$PYTHON" -m pytest -q tests/test_discovery.py tests/test_pdf_helpers.py 2>&1); then
-    ok "discovery and PDF tests passed"
+  if out=$("$PYTHON" -m pytest -q -m "not exercise" tests/ 2>&1); then
+    ok "offline tests passed (exercises excluded)"
   else
     bad "offline discovery/PDF tests failed"
     printf '%s\n' "$out" | tail -6 | sed 's/^/       /'

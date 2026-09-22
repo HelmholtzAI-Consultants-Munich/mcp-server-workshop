@@ -12,11 +12,16 @@ From a checkout that has the private directory present, verify the reference
 implementation with:
 
 ```bash
-python -m pytest -q --adapter-reference solution/agent/adapter.py
+python -m pytest -q \
+  --adapter-reference solution/agent/adapter.py \
+  --server-reference solution/mcp_servers/research_server.py
 ```
 
-The `--adapter-reference` option loads the reference only inside the tests;
-the participant stubs in `agent/adapter.py` remain unchanged. The complete
+The two reference options load the answers only inside the tests; the
+participant stubs in `agent/adapter.py` and `mcp_servers/research_server.py`
+remain unchanged. To check the participant experience instead, run
+`python -m pytest tests/ -m "not exercise" -q`, which must be green in a fresh
+clone: anything failing there is our bug, not theirs. The complete
 offline suite exercises real MCP subprocesses and simulated model responses,
 so it needs no API key or network connection.
 

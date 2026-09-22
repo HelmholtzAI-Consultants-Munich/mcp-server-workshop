@@ -41,9 +41,9 @@ the adapter tests do. A failed schema conversion names `agent/adapter.py`.
 
 Use the same `OPENAI_API_KEY`, `OPENAI_MODEL`, and optional `OPENAI_BASE_URL`
 configuration as the existing bot. The endpoint and model must support
-Chat Completions `tools` and `tool_calls`. Compatibility with the workshop's
-Blablador configuration still needs live verification; no JSON fallback is
-provided until that requirement is established.
+Chat Completions `tools` and `tool_calls`. Blablador supports them, which the
+facilitator has verified against a live key, so there is no JSON fallback path
+and none is needed.
 
 ```bash
 python run_bot.py --agent --trace --max-iterations 5 "What methods are used?"
@@ -74,7 +74,7 @@ python run_bot.py "What methods are used?"
 Before completing the adapter, run the infrastructure tests separately:
 
 ```bash
-python -m pytest tests/ --ignore=tests/test_adapter.py -q
+python -m pytest tests/ -m "not exercise" -q
 ```
 
 Full `python -m pytest -q` includes the exercise tests, so a starter clone has
