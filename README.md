@@ -1,6 +1,6 @@
-# HAICON26 Agentic RAG Hackathon
+# From MCP Server to Agent
 
-Hands-on mini hackathon for the [Helmholtz Agentic AI Workshop](https://github.com/Helmholtz-AI-Matter/agentic-ai-workshop) at HAICON26.
+**A Hands-On Workshop on Building Tool-Using LLM Systems**
 
 You will build a small research assistant over local PDFs: write your own MCP
 server, then connect it to a language model so the model can choose and call
@@ -9,9 +9,7 @@ your tools on its own.
 **Date:** Friday 25 September 2026, 09:30 to 15:30
 **Location:** in person, Neuherberg campus, NHB31, Room 3
 
-**Workshop repo (slides & overview):** [Helmholtz-AI-Matter/agentic-ai-workshop](https://github.com/Helmholtz-AI-Matter/agentic-ai-workshop)
-
-Also at the hackathon: [Abstracts Explorer](https://github.com/thawn/abstracts-explorer) — choose one project for the session.
+**Slides and overview:** [Helmholtz-AI-Matter/agentic-ai-workshop](https://github.com/Helmholtz-AI-Matter/agentic-ai-workshop)
 
 ---
 

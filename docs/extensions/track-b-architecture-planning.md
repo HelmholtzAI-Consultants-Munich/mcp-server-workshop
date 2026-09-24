@@ -26,7 +26,7 @@ Who uses it today? What pain does an agentic layer address?
 
 ## 2. Workshop pattern → your project
 
-This hackathon repo uses: **MCP tools** + **Discover → Select → Read → Answer**.
+This workshop repo uses: **MCP tools** + **Discover → Select → Read → Answer**.
 
 | Workshop component | Exists in your target project? | Your equivalent (or “missing”) |
 |--------------------|--------------------------------|--------------------------------|
