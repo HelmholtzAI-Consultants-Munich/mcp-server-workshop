@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+from contextlib import AsyncExitStack
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -11,13 +12,10 @@ if str(ROOT) not in sys.path:
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from agent.mcp_client import MCPClient
+from agent.mcp_client import MCPClient, connect_servers, owners_of
 from agent.prompts import ANSWER_SYSTEM, SELECT_SYSTEM, answer_user, select_user
 
 load_dotenv(ROOT / ".env", override=True)
-
-PDF_SERVER = "mcp_servers.pdf_server"
-SYSTEM_SERVER = "mcp_servers.system_server"
 
 
 @dataclass
@@ -100,7 +98,16 @@ class ResearchBot:
 
 
 async def _cli(question: str, dry_run: bool) -> int:
-    async with MCPClient(PDF_SERVER) as pdf, MCPClient(SYSTEM_SERVER) as system:
+    async with AsyncExitStack() as stack:
+        connected, failures = await connect_servers(stack)
+        for module, exc in failures.items():
+            print(f"Warning: {module} failed to start ({exc}); skipping it.")
+        owners = owners_of(connected)
+        pdf, system = owners.get("list_pdfs"), owners.get("get_current_time")
+        if pdf is None or system is None:
+            missing = [n for n in ("list_pdfs", "get_current_time") if n not in owners]
+            print(f"No server provides: {', '.join(missing)}. Run: python call_tool.py --list")
+            return 1
         bot = ResearchBot(pdf=pdf, system=system)
         print("Step 1 — Discover")
         papers = await bot.discover()
