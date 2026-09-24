@@ -71,6 +71,24 @@ class MCPClient:
             raise RuntimeError("MCP client not connected")
         return (await self.session.list_tools()).tools
 
+    async def list_resources(self):
+        """Ask the server for its static MCP resources."""
+        if not self.session:
+            raise RuntimeError("MCP client not connected")
+        return (await self.session.list_resources()).resources
+
+    async def list_resource_templates(self):
+        """Ask the server for parameterized MCP resource templates."""
+        if not self.session:
+            raise RuntimeError("MCP client not connected")
+        return (await self.session.list_resource_templates()).resourceTemplates
+
+    async def list_prompts(self):
+        """Ask the server for its reusable MCP prompt templates."""
+        if not self.session:
+            raise RuntimeError("MCP client not connected")
+        return (await self.session.list_prompts()).prompts
+
     async def call_tool(self, name: str, arguments: dict | None = None) -> dict:
         if not self.session:
             raise RuntimeError("MCP client not connected")
