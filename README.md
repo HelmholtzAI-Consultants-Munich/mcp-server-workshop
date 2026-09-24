@@ -9,11 +9,6 @@ your tools on its own.
 **Date:** Friday 25 September 2026, 09:30 to 15:30  
 **Location:** in person, Neuherberg campus, NHB31, Room 3
 
-**Slides and overview:** [Helmholtz-AI-Matter/agentic-ai-workshop](https://github.com/Helmholtz-AI-Matter/agentic-ai-workshop)
----
-
-
-
 ## Before the workshop
 
 Please arrive with the repository cloned and the environment working. It takes
