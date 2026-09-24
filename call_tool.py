@@ -9,7 +9,8 @@ Run from the project root. No API key needed.
 
 Use this to test a tool you just added: run --list to confirm the server
 registered it and to see the schema the model will read, then call it with
-some arguments and look at the JSON.
+some arguments and look at the JSON. The listing also shows MCP resources,
+resource templates and prompt templates.
 
 Servers are found by scanning mcp_servers/, so a server you write yourself
 shows up here as soon as the file exists. No registration step.
@@ -26,7 +27,7 @@ sys.path.insert(0, str(ROOT))
 from agent.mcp_client import MCPToolError, connect_servers, explain_failure, owners_of
 
 
-def _print_listing(connected: dict, failures: dict) -> None:
+async def _print_listing(connected: dict, failures: dict) -> None:
     for module, (_, tools) in connected.items():
         print(f"{module}:")
         if not tools:
@@ -36,6 +37,28 @@ def _print_listing(connected: dict, failures: dict) -> None:
             if tool.description:
                 print(f"      {tool.description.splitlines()[0]}")
             print(f"      schema: {json.dumps(tool.inputSchema)}")
+    for module, (client, _) in connected.items():
+        resources = await client.list_resources()
+        templates = await client.list_resource_templates()
+        prompts = await client.list_prompts()
+        if not (resources or templates or prompts):
+            continue
+        print(f"{module} MCP extensions:")
+        for resource in resources:
+            print(f"  resource: {resource.uri}")
+            if resource.description:
+                print(f"      {resource.description}")
+        for template in templates:
+            print(f"  resource template: {template.uriTemplate}")
+            if template.description:
+                print(f"      {template.description}")
+        for prompt in prompts:
+            print(f"  prompt: {prompt.name}")
+            if prompt.description:
+                print(f"      {prompt.description}")
+            if prompt.arguments:
+                names = ", ".join(argument.name for argument in prompt.arguments)
+                print(f"      arguments: {names}")
     for module, exc in failures.items():
         print(f"{module}:")
         print(f"  FAILED to start ({exc})")
@@ -51,7 +74,7 @@ async def main(argv: list[str]) -> int:
         connected, failures = await connect_servers(stack)
 
         if argv[0] == "--list":
-            _print_listing(connected, failures)
+            await _print_listing(connected, failures)
             return 1 if failures else 0
 
         name, raw_args = argv[0], argv[1] if len(argv) > 1 else "{}"
