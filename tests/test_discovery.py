@@ -44,6 +44,30 @@ WORKING_SERVER = dedent(
     '''
 )
 
+EXTENSION_SERVER = dedent(
+    '''
+    from mcp.server.fastmcp import FastMCP
+
+    mcp = FastMCP("extension-server")
+
+
+    @mcp.resource("workshop://example")
+    def workshop_resource() -> str:
+        """A small static resource for discovery tests."""
+        return "example"
+
+
+    @mcp.prompt()
+    def workshop_prompt(question: str) -> str:
+        """A small reusable prompt for discovery tests."""
+        return f"Answer: {question}"
+
+
+    if __name__ == "__main__":
+        mcp.run()
+    '''
+)
+
 
 @pytest.fixture
 def temp_server():
@@ -100,6 +124,23 @@ def test_list_tools_returns_name_description_and_schema():
             # data_dir was removed. It must not reappear in the schema, or
             # the model will start inventing values for it.
             assert "data_dir" not in extract.inputSchema["properties"]
+
+    asyncio.run(scenario())
+
+
+def test_client_lists_resources_and_prompts(temp_server):
+    module = temp_server("temp_extension_server", EXTENSION_SERVER)
+
+    async def scenario():
+        async with AsyncExitStack() as stack:
+            connected, failures = await connect_servers(stack, [module])
+            assert not failures
+            client, _ = connected[module]
+            resources = await client.list_resources()
+            prompts = await client.list_prompts()
+            assert [str(resource.uri) for resource in resources] == ["workshop://example"]
+            assert [prompt.name for prompt in prompts] == ["workshop_prompt"]
+            assert prompts[0].arguments[0].name == "question"
 
     asyncio.run(scenario())
 
