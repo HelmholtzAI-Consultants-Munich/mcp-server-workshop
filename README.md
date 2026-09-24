@@ -6,9 +6,8 @@ You will build a small research assistant over local PDFs: write your own MCP
 server, then connect it to a language model so the model can choose and call
 your tools on its own.
 
-**Format:** in person
-**Venue:** _to be confirmed_
-**When:** 09:30 to 15:30, with an hour for lunch
+**Date:** Friday 25 September 2026, 09:30 to 15:30
+**Location:** in person, Neuherberg campus, NHB31, Room 3
 
 **Workshop repo (slides & overview):** [Helmholtz-AI-Matter/agentic-ai-workshop](https://github.com/Helmholtz-AI-Matter/agentic-ai-workshop)
 

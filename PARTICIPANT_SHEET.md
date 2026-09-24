@@ -1,6 +1,6 @@
 # Agentic workshop hackathon — participant sheet
 
-**09:30 to 15:30 · in person · please arrive with the setup done**
+**25.09.2026 · 09:30 to 15:30 · Neuherberg, NHB31, Room 3 · please arrive with the setup done**
 
 ## 1. Get the project
 
