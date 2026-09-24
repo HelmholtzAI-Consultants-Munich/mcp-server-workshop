@@ -6,11 +6,10 @@ You will build a small research assistant over local PDFs: write your own MCP
 server, then connect it to a language model so the model can choose and call
 your tools on its own.
 
-**Date:** Friday 25 September 2026, 09:30 to 15:30
+**Date:** Friday 25 September 2026, 09:30 to 15:30  
 **Location:** in person, Neuherberg campus, NHB31, Room 3
 
 **Slides and overview:** [Helmholtz-AI-Matter/agentic-ai-workshop](https://github.com/Helmholtz-AI-Matter/agentic-ai-workshop)
-
 ---
 
 
@@ -162,10 +161,10 @@ Guide: [Core task 2](docs/core-tasks/#core-task-2-connect-your-tools-to-the-agen
 more than one, and finishing the two core tasks is a complete result.
 
 
-| Track                         | Focus                                                            | File                         |
-| ----------------------------- | ---------------------------------------------------------------- | ---------------------------- |
-| **A** Feature sprint          | Add a feature to your server, the pipeline or the agent          | [Track A — Feature sprint](docs/extensions/track-a-feature-sprint.md) |
-| **B** Architecture planning   | Plan an agentic integration for your own project, no code        | [Track B — Architecture planning](docs/extensions/track-b-architecture-planning.md) |
+| Track                         | Focus                                                            | File                                                                                    |
+| ----------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| **A** Feature sprint          | Add a feature to your server, the pipeline or the agent          | [Track A — Feature sprint](docs/extensions/track-a-feature-sprint.md)                   |
+| **B** Architecture planning   | Plan an agentic integration for your own project, no code        | [Track B — Architecture planning](docs/extensions/track-b-architecture-planning.md)     |
 | **C** Integration experiments | Probe the system, compare tools against the bot, report failures | [Track C — Integration experiments](docs/extensions/track-c-integration-experiments.md) |
 
 
