@@ -28,7 +28,7 @@ if [ -f run_bot.py ]; then
   ok "in the project root (run_bot.py found)"
 else
   bad "run_bot.py not found in the current directory"
-  hint "cd into the cloned haicon26-agentic-rag-hackathon folder, then re-run"
+  hint "cd into the cloned mcp-server-workshop folder, then re-run"
   printf "\n${RED}Cannot continue outside the project root.${RESET}\n"
   exit 1
 fi
@@ -98,11 +98,11 @@ fi
 
 # --- 3. sample data ----------------------------------------------------------
 printf "\n%s\n" "${BOLD}Sample data${RESET}"
-pdfs=$(ls papers/*.pdf 2>/dev/null | wc -l | tr -d ' ')
+pdfs=$(ls data/*.pdf 2>/dev/null | wc -l | tr -d ' ')
 if [ "${pdfs:-0}" -ge 1 ]; then
-  ok "$pdfs sample PDF(s) in papers/"
+  ok "$pdfs sample PDF(s) in data/"
 else
-  bad "no PDFs in papers/"
+  bad "no PDFs in data/"
   hint "$PYTHON scripts/generate_sample_pdfs.py"
 fi
 

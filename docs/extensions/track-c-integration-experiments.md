@@ -1,4 +1,4 @@
-# Integration experiments — Track C
+# Track C — Integration experiments
 
 **You do not need IDE or MCP setup knowledge.**  
 Track C is about **finding where the system breaks**, not building a large feature. Follow the phases below (~60 min hands-on).
@@ -21,7 +21,7 @@ Track A **builds** features. Track B **plans** architecture elsewhere. Track C *
 
 ```bash
 conda activate hackathon-haicon
-cd agentic-workshop-hackathon
+cd mcp-server-workshop
 python scripts/integration_demo.py
 ```
 

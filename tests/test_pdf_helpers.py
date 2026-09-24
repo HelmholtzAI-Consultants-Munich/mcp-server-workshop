@@ -12,8 +12,8 @@ from mcp_servers import _paths, _pdf, pdf_server
 
 @pytest.fixture
 def paper(tmp_path, monkeypatch):
-    monkeypatch.setattr(_paths, "PAPERS_DIR", tmp_path)
-    monkeypatch.setattr(pdf_server, "PAPERS_DIR", tmp_path)
+    monkeypatch.setattr(_paths, "DATA_DIR", tmp_path)
+    monkeypatch.setattr(pdf_server, "DATA_DIR", tmp_path)
     path = tmp_path / "example.pdf"
     pdf = FPDF()
     for lines in (["Alpha methods", "Accuracy 92 percent"], [], ["Beta results"]):
@@ -101,7 +101,7 @@ def test_four_tools_work_over_mcp_with_unchanged_schema():
             assert {tool.name for tool in tools} == {
                 "list_pdfs", "extract_pdf_text", "search_pdf_text", "list_papers"}
             for tool in tools:
-                assert "papers_dir" not in tool.inputSchema["properties"]
+                assert "data_dir" not in tool.inputSchema["properties"]
             listed = await owners["list_pdfs"].call_tool("list_pdfs")
             assert "sample_methods.pdf" in {p["filename"] for p in listed["papers"]}
             extracted = await owners["extract_pdf_text"].call_tool(
@@ -135,8 +135,8 @@ def test_output_path_rejects_anything_that_escapes(tmp_path, monkeypatch, hostil
         _paths.safe_output_path(hostile)
 
 
-def test_papers_and_output_stay_separate(tmp_path, monkeypatch):
-    monkeypatch.setattr(_paths, "PAPERS_DIR", tmp_path / "papers")
+def test_data_and_output_stay_separate(tmp_path, monkeypatch):
+    monkeypatch.setattr(_paths, "DATA_DIR", tmp_path / "data")
     monkeypatch.setattr(_paths, "OUTPUT_DIR", tmp_path / "output")
-    assert _paths.safe_pdf_path("a.pdf").parent.name == "papers"
+    assert _paths.safe_pdf_path("a.pdf").parent.name == "data"
     assert _paths.safe_output_path("a.txt").parent.name == "output"

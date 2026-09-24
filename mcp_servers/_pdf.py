@@ -1,7 +1,7 @@
 """Shared PDF reading for MCP servers.
 
 Helpers return ordinary dictionaries; each server serializes its tool results.
-Filename-based helpers always resolve through safe_pdf_path inside papers/.
+Filename-based helpers always resolve through safe_pdf_path inside data/.
 The leading underscore keeps this module out of server discovery.
 """
 from pathlib import Path
@@ -12,7 +12,7 @@ from mcp_servers._paths import safe_pdf_path
 
 
 def pdf_metadata(path: Path) -> dict:
-    """Read metadata for a path obtained by scanning the papers directory."""
+    """Read metadata for a path obtained by scanning the data directory."""
     reader = PdfReader(str(path))
     return {
         "filename": path.name,

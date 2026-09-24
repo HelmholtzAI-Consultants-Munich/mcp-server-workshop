@@ -6,7 +6,7 @@ so run `python call_tool.py --list` after each change and look at what you made.
 
 Read files only through mcp_servers._pdf, and write only through
 safe_output_path, which confines writes to output/ the same way the PDF tools
-are confined to papers/.
+are confined to data/.
 
 Check your work: python -m pytest tests/test_research_server.py -q
 """
@@ -22,7 +22,7 @@ mcp = FastMCP("research-server")
 
 @mcp.tool()
 def save_paper_text(filename: str) -> str:
-    """Extract the text of a paper in papers/ and save it under output/.
+    """Extract the text of a PDF in data/ and save it under output/.
 
     Takes the PDF's filename only. Extract the text with extract_pdf_text,
     which returns a dict with "text", "filename" and "pages_read", or an

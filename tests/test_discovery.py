@@ -97,9 +97,9 @@ def test_list_tools_returns_name_description_and_schema():
             extract = by_name["extract_pdf_text"]
             assert extract.description
             assert extract.inputSchema["required"] == ["filename"]
-            # papers_dir was removed. It must not reappear in the schema, or
+            # data_dir was removed. It must not reappear in the schema, or
             # the model will start inventing values for it.
-            assert "papers_dir" not in extract.inputSchema["properties"]
+            assert "data_dir" not in extract.inputSchema["properties"]
 
     asyncio.run(scenario())
 

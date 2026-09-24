@@ -1,4 +1,4 @@
-# Feature sprint, Track A
+# Track A — Feature sprint
 
 Track A is a small, focused extension of the workshop project. Choose one
 task, make the smallest useful change, and demonstrate it before share-out.
@@ -39,12 +39,12 @@ Your extension goes on that same server, so one service grows from a small
 example into something useful.
 
 Writes are confined to `output/` by `safe_output_path`, the same way reads are
-confined to `papers/` by `safe_pdf_path`. Use it for anything that creates a
+confined to `data/` by `safe_pdf_path`. Use it for anything that creates a
 file: a filename chosen by a model is not a filename you can trust.
 
 When adding PDF features, import functions from `mcp_servers._pdf` instead of
-duplicating `pypdf` setup or bypassing the `papers/` confinement. PDF readers
-take filenames, not a configurable papers directory.
+duplicating `pypdf` setup or bypassing the `data/` confinement. PDF readers
+take filenames, not a configurable data directory.
 
 ## Backlog
 
@@ -55,7 +55,7 @@ take filenames, not a configurable papers directory.
 | A3 | M | yes | Improve the agent-side selection logic so it ranks candidate papers before Read. This is reasoning in the agent or pipeline, not another MCP tool. | Run the relevant bot command and show which papers were ranked and selected. |
 | A4 | M | yes | Extend the supplied agent behavior with a visible tool/action trace or another bounded ReAct improvement. Keep the termination condition and iteration cap. Do not expose private model chain-of-thought. | `python run_bot.py --agent --trace "What accuracy was reported?"` |
 | A5 | S | no | Study and improve the shipped `list_papers` worked example. Keep curated manifest metadata separate from directory scanning and preserve the `available` flag. | `python call_tool.py list_papers` |
-| A7 | S | no | Add or extend path-safety tests for `safe_pdf_path`: valid filename, `..` traversal, absolute path, and missing file. Without `papers_dir`, this helper is the only thing between the tools and the rest of the disk. | `python -m pytest tests/ -m "not exercise" -q` |
+| A7 | S | no | Add or extend path-safety tests for `safe_pdf_path`: valid filename, `..` traversal, absolute path, and missing file. Without `data_dir`, this helper is the only thing between the tools and the rest of the disk. | `python -m pytest tests/ -m "not exercise" -q` |
 | A8 | S | no | Add Markdown export as a tool on your research server. Read what `save_paper_text` already wrote to `output/`, add a timestamp from `get_current_time`, and write the report back through `safe_output_path`. | `python call_tool.py export_markdown '{"filename": "sample_methods.txt"}'` and inspect the generated report. |
 | A9 | S | no | Add one standard MCP extension to your research server with `@mcp.resource()` or `@mcp.prompt()`. Describe what a client receives. | `python call_tool.py --list` and demonstrate the extension through the MCP client. |
 | A10 | stretch | optional | Connect the server to a client such as Claude Desktop, Cursor, or Cline. Document the registration and one successful call. | Show the client configuration and a working tool call. |

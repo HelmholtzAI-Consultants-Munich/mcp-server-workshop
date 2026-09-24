@@ -4,7 +4,7 @@ from pathlib import Path
 from fpdf import FPDF
 
 ROOT = Path(__file__).resolve().parent.parent
-PAPERS = ROOT / "papers"
+DATA = ROOT / "data"
 
 SAMPLES = {
     "sample_methods.pdf": (
@@ -34,9 +34,9 @@ def write_pdf(path: Path, body: str) -> None:
 
 
 def main() -> None:
-    PAPERS.mkdir(parents=True, exist_ok=True)
+    DATA.mkdir(parents=True, exist_ok=True)
     for name, text in SAMPLES.items():
-        write_pdf(PAPERS / name, text)
+        write_pdf(DATA / name, text)
         print(f"wrote {name}")
 
 

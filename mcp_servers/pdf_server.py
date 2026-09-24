@@ -3,15 +3,15 @@ import json
 from mcp.server.fastmcp import FastMCP
 
 from mcp_servers import _pdf
-from mcp_servers._paths import PAPERS_DIR, safe_pdf_path
+from mcp_servers._paths import DATA_DIR, safe_pdf_path
 
 mcp = FastMCP("pdf-server")
 
 
 @mcp.tool()
 def list_pdfs() -> str:
-    """List PDF files in the papers directory."""
-    root = PAPERS_DIR.resolve()
+    """List PDF files in the data directory."""
+    root = DATA_DIR.resolve()
     if not root.is_dir():
         return json.dumps({"papers": [], "error": f"Directory not found: {root}"})
     entries = sorted(root.glob("*.pdf"), key=lambda p: p.name.lower())
@@ -21,7 +21,7 @@ def list_pdfs() -> str:
             papers.append(_pdf.pdf_metadata(path))
         except Exception as exc:
             papers.append({"filename": path.name, "error": str(exc)})
-    return json.dumps({"papers_dir": str(root), "papers": papers})
+    return json.dumps({"data_dir": str(root), "papers": papers})
 
 
 @mcp.tool()
@@ -46,12 +46,12 @@ def search_pdf_text(
 
 @mcp.tool()
 def list_papers() -> str:
-    """List papers from papers/manifest.json with curated metadata.
+    """List papers from data/manifest.json with curated metadata.
 
     Unlike list_pdfs, which scans the directory, this returns the curated
     catalogue in manifest.json and flags whether each entry's PDF is present.
     """
-    root = PAPERS_DIR.resolve()
+    root = DATA_DIR.resolve()
     manifest_path = root / "manifest.json"
     if not manifest_path.is_file():
         return json.dumps({"papers": [], "error": f"Manifest not found: {manifest_path}"})
@@ -67,7 +67,7 @@ def list_papers() -> str:
         except ValueError:
             available = False
         papers.append({**entry, "available": available})
-    return json.dumps({"papers_dir": str(root), "papers": papers})
+    return json.dumps({"data_dir": str(root), "papers": papers})
 
 
 if __name__ == "__main__":

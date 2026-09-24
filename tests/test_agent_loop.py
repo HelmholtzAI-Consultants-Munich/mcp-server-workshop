@@ -133,10 +133,10 @@ def test_nonserializable_dispatch_result(setup):
 
 
 def test_extra_arguments_are_traced_and_not_filtered(setup):
-    raw = '{"query":"test","papers_dir":"../.."}'
+    raw = '{"query":"test","data_dir":"../.."}'
     trace = []
     assert run(Model(response([call(arguments=raw)]), response(content="Done")), setup, trace=trace.append) == "Done"
-    assert any("undeclared arguments: papers_dir" in line for line in trace)
+    assert any("undeclared arguments: data_dir" in line for line in trace)
     assert setup[1].dispatch.call_args.args[0].function.arguments == raw
 
 

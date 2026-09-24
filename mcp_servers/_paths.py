@@ -1,7 +1,7 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PAPERS_DIR = ROOT / "papers"
+DATA_DIR = ROOT / "data"
 OUTPUT_DIR = ROOT / "output"
 
 
@@ -10,7 +10,7 @@ def _confined(filename: str, base: Path) -> Path:
 
     The base is chosen by the code, never by a tool argument. That distinction
     is the whole point: a caller-supplied directory is how the PDF tools used
-    to be talked out of the papers folder.
+    to be talked out of the data folder.
     """
     base = base.resolve()
     name = Path(filename).name
@@ -23,8 +23,8 @@ def _confined(filename: str, base: Path) -> Path:
 
 
 def safe_pdf_path(filename: str) -> Path:
-    """Resolve a filename inside papers/, rejecting anything that escapes it."""
-    return _confined(filename, PAPERS_DIR)
+    """Resolve a filename inside data/, rejecting anything that escapes it."""
+    return _confined(filename, DATA_DIR)
 
 
 def safe_output_path(filename: str) -> Path:

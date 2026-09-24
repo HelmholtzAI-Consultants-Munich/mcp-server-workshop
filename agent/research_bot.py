@@ -83,7 +83,7 @@ class ResearchBot:
     async def run(self, question: str) -> dict:
         papers = await self.discover()
         if not papers:
-            return {"error": "No PDFs in papers/. Add files and retry."}
+            return {"error": "No PDFs in data/. Add files and retry."}
         selected = await self.select(question, papers)
         excerpts = await self.read(selected)
         if not excerpts.strip():
