@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# check_install.sh — verify your hackathon setup before the session.
+# check_install.sh — verify your setup before the workshop.
 #
 # Runs no LLM calls and needs no API key. It checks Python, the required
 # packages (including the one version pin that matters), the sample PDFs,
@@ -20,7 +20,7 @@ bad()  { printf "  ${RED}FAIL${RESET} %s\n" "$1"; fail=$((fail + 1)); }
 note() { printf "  ${YELLOW}WARN${RESET} %s\n" "$1"; warn=$((warn + 1)); }
 hint() { printf "       -> %s\n" "$1"; }
 
-printf "%s\n" "${BOLD}HAICON26 hackathon - install check${RESET}"
+printf "%s\n" "${BOLD}MCP server workshop - install check${RESET}"
 
 # --- 0. project root ---------------------------------------------------------
 printf "\n%s\n" "${BOLD}Location${RESET}"
@@ -44,7 +44,7 @@ for c in python python3; do
 done
 if [ -z "$PYTHON" ]; then
   bad "no python interpreter on PATH"
-  hint "activate your environment first: conda activate hackathon-haicon"
+  hint "activate your environment first: conda activate mcp-server-workshop"
 else
   ver=$("$PYTHON" -c 'import sys;print("%d.%d.%d"%sys.version_info[:3])' 2>/dev/null)
   mm=$("$PYTHON" -c 'import sys;print("%d.%d"%sys.version_info[:2])' 2>/dev/null)
@@ -53,7 +53,7 @@ else
     3.11 | 3.12) : ;;
     3.13) note "verified on 3.11 and 3.12; $ver usually works but is untested" ;;
     *) bad "Python $ver is too old; this project needs 3.11 or newer"
-       hint "conda env create -f environment.yml && conda activate hackathon-haicon" ;;
+       hint "conda env create -f environment.yml && conda activate mcp-server-workshop" ;;
   esac
   if [ -n "${CONDA_DEFAULT_ENV:-}" ]; then
     ok "conda env active: $CONDA_DEFAULT_ENV"
@@ -61,7 +61,7 @@ else
     ok "virtualenv active: $(basename "$VIRTUAL_ENV")"
   else
     note "no conda/venv environment detected as active"
-    hint "conda activate hackathon-haicon"
+    hint "conda activate mcp-server-workshop"
   fi
 fi
 
@@ -182,5 +182,5 @@ if [ "$fail" -gt 0 ]; then
 elif [ "$warn" -gt 0 ]; then
   printf "${GREEN}${BOLD}All critical checks passed${RESET} (${YELLOW}%d warning(s)${RESET}).  You are good to go.\n" "$warn"
 else
-  printf "${GREEN}${BOLD}All checks passed - you are ready for the hackathon.${RESET}\n"
+  printf "${GREEN}${BOLD}All checks passed - you are ready for the workshop.${RESET}\n"
 fi

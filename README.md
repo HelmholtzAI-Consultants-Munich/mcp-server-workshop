@@ -53,7 +53,7 @@ With conda:
 
 ```bash
 conda env create -f environment.yml
-conda activate hackathon-haicon
+conda activate mcp-server-workshop
 ```
 
 Or with venv, if you do not use conda:

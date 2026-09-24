@@ -1,4 +1,4 @@
-name: hackathon-haicon
+name: mcp-server-workshop
 channels:
   - conda-forge
 dependencies:

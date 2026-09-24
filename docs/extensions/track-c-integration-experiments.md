@@ -20,7 +20,7 @@ Track A **builds** features. Track B **plans** architecture elsewhere. Track C *
 ## Phase 1 — Baseline run (~15 min)
 
 ```bash
-conda activate hackathon-haicon
+conda activate mcp-server-workshop
 cd mcp-server-workshop
 python scripts/integration_demo.py
 ```
@@ -107,10 +107,10 @@ Wire MCP into VS Code, Cursor, or Claude Desktop — **not required**.
 ```json
 {
   "mcpServers": {
-    "haicon-pdf": {
-      "command": "/path/to/miniconda3/envs/hackathon-haicon/bin/python",
+    "workshop-pdf": {
+      "command": "/path/to/miniconda3/envs/mcp-server-workshop/bin/python",
       "args": ["-m", "mcp_servers.pdf_server"],
-      "cwd": "/path/to/agentic-workshop-hackathon"
+      "cwd": "/path/to/mcp-server-workshop"
     }
   }
 }
