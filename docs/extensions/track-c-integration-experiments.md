@@ -110,7 +110,7 @@ Wire MCP into VS Code, Cursor, or Claude Desktop — **not required**.
     "workshop-pdf": {
       "command": "/path/to/miniconda3/envs/mcp-server-workshop/bin/python",
       "args": ["-m", "mcp_servers.pdf_server"],
-      "cwd": "/path/to/mcp-server-workshop"
+      "cwd": "/absolute/path/to/mcp-server-workshop"
     }
   }
 }
