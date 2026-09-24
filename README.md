@@ -8,7 +8,7 @@ your tools on its own.
 
 **Format:** in person
 **Venue:** _to be confirmed_
-**Duration:** _to be confirmed_
+**When:** 09:30 to 15:30, with an hour for lunch
 
 **Workshop repo (slides & overview):** [Helmholtz-AI-Matter/agentic-ai-workshop](https://github.com/Helmholtz-AI-Matter/agentic-ai-workshop)
 
@@ -92,23 +92,22 @@ will pick them up.
 
 ## Schedule
 
-Exact times are announced on the day.
+| Time | Session | Facilitator |
+|---|---|---|
+| 09:30 – 09:45 | Welcome and introduction | Haider |
+| 09:45 – 10:30 | Introduction to agentic AI and MCP | Haider |
+| 10:30 – 10:45 | Q&A | |
+| 10:45 – 11:00 | The task, the repository, and group formation | Ema |
+| 11:00 – 11:15 | Break | |
+| 11:15 – 11:30 | Setup and API key | Haider |
+| 11:30 – 12:30 | **Core task 1** — your own MCP server, and a look at the solution | |
+| 12:30 – 13:30 | Lunch | |
+| 13:30 – 15:00 | **Core task 2** — the adapter, then an optional extension | |
+| 15:00 – 15:15 | Group presentations | Haider |
+| 15:15 – 15:30 | Wrap-up | |
 
-| Session | |
-|---|---|
-| Welcome and introduction | |
-| Icebreaker | |
-| Introduction to agentic AI and MCP | |
-| Q&A | |
-| The task: repository structure and optional extensions | |
-| Break and group formation | |
-| API key setup | |
-| **Core task 1** — implement the research MCP server | |
-| Check-in and solution discussion | |
-| Lunch | |
-| **Core task 2** — implement the adapter to the language model | |
-| Optional extension work, for groups who finish early | |
-| Solution discussion, group presentations, wrap-up | |
+Core task 1 gets the morning slot, core task 2 the afternoon. Extensions are
+for groups who finish core task 2 with time to spare.
 
 ---
 

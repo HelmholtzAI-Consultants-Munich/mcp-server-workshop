@@ -1,6 +1,10 @@
-# Hackathon tracks (2 h, on the spot)
+# Hackathon tracks
 
-No prep required. Start with `PARTICIPANT_SHEET.md`.
+The tracks below are **optional extensions**. Everyone first completes the two
+core tasks: your own MCP server, then the adapter that connects it to the model.
+Pick a track only once both work, and only one.
+
+Start with `PARTICIPANT_SHEET.md`.
 
 ## Track A — Feature sprint
 
@@ -16,12 +20,10 @@ Open **`INTEGRATION_Track_C.md`**. Five phases (~60 min): baseline demo → your
 
 Easiest to **start**, not necessarily shortest if done fully.
 
-## Setup (first 10 min)
+## Setup
 
-1. `conda activate hackathon-haicon`
-2. `cp .env.example .env` (optional — full bot / some Track A tasks)
-3. `python scripts/generate_sample_pdfs.py`
-4. `python run_bot.py --dry-run`
+See the README. Please arrive with the repository cloned and the environment
+working; no API key is needed in advance.
 
 ## One file per track
 

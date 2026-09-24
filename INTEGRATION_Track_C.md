@@ -120,7 +120,7 @@ Wire MCP into VS Code, Cursor, or Claude Desktop — **not required**.
 
 ---
 
-## Your deliverable (fill in before 1:35)
+## Your deliverable (fill in before 15:00)
 
 ### Phase 1 — Bundled queries
 
