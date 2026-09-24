@@ -107,7 +107,7 @@ else
 fi
 
 # --- 4. api key (optional) ---------------------------------------------------
-printf "\n%s\n" "${BOLD}API key${RESET} (optional - only the full LLM run needs it)"
+printf "\n%s\n" "${BOLD}API key${RESET} (handed out at the workshop - not needed to prepare)"
 if [ -f .env ]; then
   if grep -qE '^OPENAI_API_KEY=.+' .env && ! grep -qE '^OPENAI_API_KEY=(sk-)?your-key-here' .env; then
     ok ".env present with OPENAI_API_KEY set"
@@ -116,8 +116,8 @@ if [ -f .env ]; then
     hint "add your real key to .env when you have one (not needed for --dry-run)"
   fi
 else
-  note "no .env yet (fine for --dry-run and the no-LLM tasks A1 and A7)"
-  hint "cp .env.example .env   # then add your key later"
+  ok "no .env yet - nothing to do before the workshop"
+  hint "the key is provided on the day; setup and both core tasks need none"
 fi
 
 # --- 4. discovery ------------------------------------------------------------
