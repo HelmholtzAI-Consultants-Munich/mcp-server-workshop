@@ -1,4 +1,5 @@
 """Student exercise: connect MCP tools to Chat Completions tool calling."""
+import json
 from typing import Any
 
 from mcp.types import Tool
@@ -14,7 +15,17 @@ def mcp_tools_to_openai_schema(tools: list[Tool]) -> list[dict]:
     inputSchema, including required/default/nested fields). Do not mutate tools
     or add strict mode. An empty input returns []. See tests/test_adapter.py.
     """
-    raise NotImplementedError("Implement mcp_tools_to_openai_schema in agent/adapter.py")
+    return [
+        {
+            "type": "function",
+            "function": {
+                "name": tool.name,
+                "description": tool.description or "",
+                "parameters": tool.inputSchema,
+            },
+        }
+        for tool in tools
+    ]
 
 
 async def dispatch(tool_call: Any, owners: dict[str, MCPClient]) -> Any:
@@ -29,4 +40,8 @@ async def dispatch(tool_call: Any, owners: dict[str, MCPClient]) -> Any:
     Valid JSON that is not an object raises ValueError. Client exceptions
     propagate to the supplied loop. Never call a client for invalid arguments.
     """
-    raise NotImplementedError("Implement dispatch in agent/adapter.py")
+    name = tool_call.function.name
+    arguments = json.loads(tool_call.function.arguments)
+    if not isinstance(arguments, dict):
+        raise ValueError(f"Tool arguments must be a JSON object, got {type(arguments).__name__}")
+    return await owners[name].call_tool(name, arguments)
