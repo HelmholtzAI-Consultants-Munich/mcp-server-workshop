@@ -1,15 +1,4 @@
-"""Your server. Two tools to write; mcp_servers/pdf_server.py is the reference.
-
-A tool is an ordinary function with @mcp.tool() above it. The type hints become
-the JSON schema a model reads, and this docstring becomes the tool description,
-so run `python call_tool.py --list` after each change and look at what you made.
-
-Read files only through mcp_servers._pdf, and write only through
-safe_output_path, which confines writes to output/ the same way the PDF tools
-are confined to data/.
-
-Check your work: python -m pytest tests/test_research_server.py -q
-"""
+"""Reference answer for the starter server. Facilitator copy, not shipped."""
 import json
 
 from mcp.server.fastmcp import FastMCP
@@ -22,26 +11,39 @@ mcp = FastMCP("research-server")
 
 @mcp.tool()
 def save_paper_text(filename: str) -> str:
-    """Extract the text of a PDF in data/ and save it under output/.
-
-    Takes the PDF's filename only. Extract the text with extract_pdf_text,
-    which returns a dict with "text", "filename" and "pages_read", or an
-    "error" key when the file is missing. Pass that error straight back.
-
-    Otherwise write the text to output/, named after the PDF with a .txt
-    suffix, and return JSON reporting what you saved.
-    """
-    raise NotImplementedError("Implement save_paper_text in mcp_servers/research_server.py")
+    """Extract the text of a paper in data/ and save it under output/."""
+    extracted = extract_pdf_text(filename)
+    if "error" in extracted:
+        return json.dumps(extracted)
+    target = safe_output_path(f"{filename.rsplit('.', 1)[0]}.txt")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(extracted["text"], encoding="utf-8")
+    return json.dumps(
+        {
+            "saved": target.name,
+            "source": extracted["filename"],
+            "pages_read": extracted["pages_read"],
+            "characters": len(extracted["text"]),
+        }
+    )
 
 
 @mcp.tool()
 def list_saved() -> str:
-    """List the text files saved in output/ so far.
-
-    Return JSON with one entry per .txt file in OUTPUT_DIR. No arguments: the
-    directory is fixed, never something a caller can choose.
-    """
-    raise NotImplementedError("Implement list_saved in mcp_servers/research_server.py")
+    """List the text files saved in output/ so far."""
+    root = OUTPUT_DIR.resolve()
+    if not root.is_dir():
+        return json.dumps({"saved": []})
+    files = sorted(p for p in root.glob("*.txt"))
+    return json.dumps(
+        {
+            "output_dir": str(root),
+            "saved": [
+                {"filename": p.name, "characters": len(p.read_text(encoding="utf-8"))}
+                for p in files
+            ],
+        }
+    )
 
 
 if __name__ == "__main__":

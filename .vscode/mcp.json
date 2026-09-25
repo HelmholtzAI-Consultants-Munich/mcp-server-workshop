@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "research-server": {
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": ["-m", "mcp_servers.research_server"],
+      "cwd": "${workspaceFolder}"
+    },
+    "pdf-server": {
+      "command": "${workspaceFolder}/.venv/bin/python",
+      "args": ["-m", "mcp_servers.pdf_server"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}
