@@ -77,7 +77,13 @@ def test_missing_file_returns_structured_error(paper, reader, args):
                                          (_pdf.search_pdf_text, ("alpha",))])
 def test_shared_readers_reject_escaping_symlink(paper, tmp_path, reader, args):
     link = paper.parent / "escape.pdf"
-    link.symlink_to(tmp_path.parent / "outside.pdf")
+    try:
+        link.symlink_to(tmp_path.parent / "outside.pdf")
+    except (OSError, NotImplementedError) as exc:
+        # Windows refuses symlinks without Developer Mode or an elevated
+        # shell. The guard under test is platform independent; only making
+        # the link is not, so skip rather than report a failure.
+        pytest.skip(f"cannot create a symlink here: {exc}")
     with pytest.raises(ValueError, match="Path escapes"):
         reader(link.name, *args)
 

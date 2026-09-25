@@ -1,5 +1,5 @@
 import json
-from datetime import datetime
+from datetime import datetime, timezone as _timezone
 from zoneinfo import ZoneInfo
 
 from mcp.server.fastmcp import FastMCP
@@ -16,8 +16,11 @@ def current_time_data(timezone: str = "UTC") -> dict[str, str]:
     try:
         tz = ZoneInfo(timezone)
     except Exception:
+        # Windows ships no time zone database, so ZoneInfo fails for every
+        # name including "UTC" unless the tzdata package is installed. The
+        # stdlib UTC object needs no database, so the fallback always works.
         timezone = "UTC"
-        tz = ZoneInfo(timezone)
+        tz = _timezone.utc
     return {
         "timezone": timezone,
         "iso": datetime.now(tz).isoformat(timespec="seconds"),
