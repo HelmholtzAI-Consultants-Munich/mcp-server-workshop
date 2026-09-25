@@ -1,18 +1,131 @@
 {
   "papers": [
     {
+      "filename": "antibiotics-and-type-1-diabetes.pdf",
+      "title": "Antibiotics and type 1 diabetes",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "cancer-study-design.pdf",
+      "title": "Cancer study design",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "cheese-microbiome-and-antibiotic-resistance.pdf",
+      "title": "Cheese microbiome and antibiotic resistance",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "diet-choice-and-lifespan.pdf",
+      "title": "Diet choice and lifespan",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "exercise-and-brain-health.pdf",
+      "title": "Exercise and brain health",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "exercise-and-cancer-immunity.pdf",
+      "title": "Exercise and cancer immunity",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "freshwater-health-monitoring.pdf",
+      "title": "Freshwater health monitoring",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "gum-disease-and-ageing.pdf",
+      "title": "Gum disease and ageing",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "gut-microbes-and-nutrition.pdf",
+      "title": "Gut microbes and nutrition",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "gut-microbiome-and-metabolic-health.pdf",
+      "title": "Gut microbiome and metabolic health",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "light-body-clock-and-sleep.pdf",
+      "title": "Light body clock and sleep",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "malaria-immunity-and-age.pdf",
+      "title": "Malaria immunity and age",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "memory-reactivation-during-sleep.pdf",
+      "title": "Memory reactivation during sleep",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
+      "filename": "rapamycin-and-healthy-ageing.pdf",
+      "title": "Rapamycin and healthy ageing",
+      "authors": "",
+      "year": null,
+      "tags": []
+    },
+    {
       "filename": "sample_methods.pdf",
       "title": "Sample Methods: A Minimal Protocol",
       "authors": "A. Author, B. Researcher",
       "year": 2024,
-      "tags": ["methods", "protocol", "sample"]
+      "tags": [
+        "methods",
+        "protocol",
+        "sample"
+      ]
     },
     {
       "filename": "sample_results.pdf",
       "title": "Sample Results and Discussion",
       "authors": "C. Scientist, D. Analyst",
       "year": 2025,
-      "tags": ["results", "evaluation", "sample"]
+      "tags": [
+        "results",
+        "evaluation",
+        "sample"
+      ]
+    },
+    {
+      "filename": "tuberculosis-and-immune-cells.pdf",
+      "title": "Tuberculosis and immune cells",
+      "authors": "",
+      "year": null,
+      "tags": []
     }
   ]
 }
